@@ -85,6 +85,12 @@ public class AdminAPI extends NotSecureBankAPI {
             return Response.status(400).entity(response).build();
         }
 
+        Object admObj = request.getSession().getAttribute(ServletUtil.SESSION_ATTR_ADMIN_KEY);
+        if (!(admObj != null && admObj instanceof String && ((String) admObj).equals(ServletUtil.SESSION_ATTR_ADMIN_VALUE))) {
+            return Response.status(403).entity("{\"error\":\"Forbidden.\"}").build();
+        }
+            
+
         String firstname;
         String lastname;
         String username;
