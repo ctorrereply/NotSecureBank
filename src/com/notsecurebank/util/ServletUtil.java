@@ -247,6 +247,10 @@ public class ServletUtil {
     public static boolean isPreApprovedForGoldVisa(HttpServletRequest request) {
         LOG.debug("isPreApprovedForGoldVisa");
 
+        /* Per risolvere questa vulnerabilità, creerei un nuovo attributo isPreApprovedForGoldVisa nel modello dati
+         * isPreApprovedForGoldVisa diventua una variabile da mantenere nel DB associata all'utente in maniera univoca e da leggere al momento del bisogno dal DB e non più dai cookie
+         * Creerei perciò anche una funzione che dia la possibilità ad utenti del customer service o altro di poter pre approvare la richiesta
+        */
         boolean isPreApprovedForGoldVisa = false;
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length > 0) {
